@@ -18,18 +18,23 @@ def num_check(question, error, num_type):
             print(error)
 
 
-# Main routine
-# Ask user how many items they need
-get_int = num_check("How many do you need? ",
-                    "Please enter an amount more than 0\n",
-                    int)
+# function to check yes no question
+def yes_no(question):
 
-# Ask user how much each item costs
-get_cost = num_check("How much does it cost? $",
-                     "Please enter a number more than 0\n",
-                     float)
+    to_check = ["yes", "no"]
 
-# print how many items the user needs and the cost (testing)
-print()
-print("You need:", get_int)
-print("It costs:",get_cost)
+    valid = False
+    while not valid:
+
+        response = input(question).lower()
+
+        for var_item in to_check:
+            if response == var_item:
+                return response
+            elif response == var_item[0]:
+                return var_item
+
+        print("Please enter either yes or no... \n")
+
+
+# *** Main routine ***
