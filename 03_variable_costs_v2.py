@@ -76,7 +76,7 @@ def get_expenses(var_fixed):
         quantity_list.append(quantity)
         price_list.append(price)
 
-    # set up dataframe
+    # set up dataframe and set the first row to 'item'
     expense_frame = pandas.DataFrame(variable_dict)
     expense_frame = expense_frame.set_index('Item')
 
@@ -93,19 +93,24 @@ def get_expenses(var_fixed):
 
     return [expense_frame, sub_total]
 
-# *** Main routine ***
 
-# product name
+# *** Main Routine ***
+
+
+# Get product name
 product_name = not_blank("Product name: ")
 
+# Call function to get user details and pull dataframe + subtotal from function
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
-# printing area
+# *** Printing Area ***
 
+# print the dataframe
 print()
 print(variable_frame)
 print()
 
+# print the subtotal
 print("Variable costs: ${:.2f}".format(variable_sub))
