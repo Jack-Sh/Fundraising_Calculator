@@ -20,6 +20,25 @@ def num_check(question, error, num_type):
             print(error)
 
 
+# function to check yes no question
+def yes_no(question):
+
+    to_check = ["yes", "no"]
+
+    valid = False
+    while not valid:
+
+        response = input(question).lower()
+
+        for var_item in to_check:
+            if response == var_item:
+                return response
+            elif response == var_item[0]:
+                return var_item
+
+        print("Please enter either yes or no... \n")
+
+
 # checks that a field isn't blank
 def not_blank(question):
     valid = False
@@ -67,7 +86,11 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+        if var_fixed == "variable":
+            quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+
+        else:
+            quantity = 1
 
         price = num_check("How much for a single item? $", "Price must be a number more than zero", float)
 
@@ -94,23 +117,34 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
 
 
-# *** Main Routine ***
-
+# *** Main routine ***
 
 # Get product name
 product_name = not_blank("Product name: ")
 
-# Call function to get user details and pull dataframe + subtotal from function
+# get variable costs
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
+# get fixed costs
+fixed_expenses = get_expenses("fixed")
+fixed_frame = fixed_expenses[0]
+fixed_sub = fixed_expenses[1]
+
 # *** Printing Area ***
 
-# print the dataframe
-print()
+print("\n----- Variable Costs -----")
 print(variable_frame)
 print()
 
-# print the subtotal
-print("Variable costs: ${:.2f}".format(variable_sub))
+# print the subtotal for variable costs
+print("Variable Costs: ${:.2f}".format(variable_sub))
+
+# print the dataframe
+print("\n----- Fixed Costs -----")
+print(fixed_frame[['Cost']])
+print()
+
+# print the subtotal for fixed costs
+print("Fixed Costs: ${:.2f}".format(fixed_sub))

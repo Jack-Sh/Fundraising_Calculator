@@ -20,6 +20,25 @@ def num_check(question, error, num_type):
             print(error)
 
 
+# function to check yes no question
+def yes_no(question):
+
+    to_check = ["yes", "no"]
+
+    valid = False
+    while not valid:
+
+        response = input(question).lower()
+
+        for var_item in to_check:
+            if response == var_item:
+                return response
+            elif response == var_item[0]:
+                return var_item
+
+        print("Please enter either yes or no... \n")
+
+
 # checks that a field isn't blank
 def not_blank(question):
     valid = False
@@ -67,7 +86,11 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+        if var_fixed == "variable":
+            quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+
+        else:
+            quantity = 1
 
         price = num_check("How much for a single item? $", "Price must be a number more than zero", float)
 
@@ -94,23 +117,45 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
 
 
-# *** Main Routine ***
+# prints expenses
+def expense_print(heading, frame, subtotal):
+    print()
+    print("----- {} Costs -----".format(heading))
+    print(frame)
+    print()
+    print("{} Costs: ${:.2f}".format(heading, subtotal))
+    return ""
 
+
+# *** Main routine ***
 
 # Get product name
 product_name = not_blank("Product name: ")
 
-# Call function to get user details and pull dataframe + subtotal from function
+# get variable costs
+print("\nPlease enter your variable costs below...")
+
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
+# ask if user has fixed costs
+have_fixed = yes_no("\nDo you have fixed costs (y / n)? ")
+
+if have_fixed == "yes":
+    # get fixed costs
+    fixed_expenses = get_expenses("fixed")
+    fixed_frame = fixed_expenses[0]
+    fixed_sub = fixed_expenses[1]
+
+else:
+    fixed_sub = 0
+
 # *** Printing Area ***
 
-# print the dataframe
+print("\n***** Fund Raising - {} *****".format(product_name))
 print()
-print(variable_frame)
-print()
+expense_print("Variable", variable_frame, variable_sub)
 
-# print the subtotal
-print("Variable costs: ${:.2f}".format(variable_sub))
+if have_fixed == "yes":
+    expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)

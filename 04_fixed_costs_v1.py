@@ -67,7 +67,11 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+        if var_fixed == "variable":
+            quantity = num_check("Quantity: ", "The amount must be a whole number and more than zero", int)
+
+        else:
+            quantity = 1
 
         price = num_check("How much for a single item? $", "Price must be a number more than zero", float)
 
@@ -101,16 +105,16 @@ def get_expenses(var_fixed):
 product_name = not_blank("Product name: ")
 
 # Call function to get user details and pull dataframe + subtotal from function
-variable_expenses = get_expenses("variable")
-variable_frame = variable_expenses[0]
-variable_sub = variable_expenses[1]
+fixed_expenses = get_expenses("fixed")
+fixed_frame = fixed_expenses[0]
+fixed_sub = fixed_expenses[1]
 
 # *** Printing Area ***
 
 # print the dataframe
 print()
-print(variable_frame)
+print(fixed_frame[['Cost']])
 print()
 
 # print the subtotal
-print("Variable costs: ${:.2f}".format(variable_sub))
+print("Fixed Costs: ${:.2f}".format(fixed_sub))
