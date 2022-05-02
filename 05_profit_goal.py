@@ -51,7 +51,7 @@ def profit_goal(total_costs):
         try:
             # check amount is a number more than zero
             amount = float(amount)
-            if amount <=0:
+            if amount <= 0:
                 print(error)
                 continue
 
@@ -89,7 +89,7 @@ def profit_goal(total_costs):
 all_costs = 200
 
 # loop for quick testing
-for item in range(0,6):
+for item in range(0, 6):
     profit_target = profit_goal(all_costs)
     print("Profit Target: ${:.2f}".format(profit_target))
     print("Total Sales: ${:.2f}".format(all_costs + profit_target))

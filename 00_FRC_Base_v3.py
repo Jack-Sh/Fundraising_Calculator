@@ -127,6 +127,72 @@ def expense_print(heading, frame, subtotal):
     return ""
 
 
+# workout profit goal and total sales required
+def profit_goal(total_costs):
+
+    # initialise variables and error message
+    error = "Please enter a valid profit goal\n"
+
+    valid = False
+    while not valid:
+
+        # ask for a profit goal
+        response = input("What is your profit goal? (eg $500 or 50%) ")
+
+        # check if first character is $
+        if response[0] == "$":
+            profit_type = "$"
+            # Get amount (everything after the $)
+            amount = response[1:]
+
+        # check if last character is %
+        elif response[-1] == "%":
+            profit_type = "%"
+            # Get amount (everything after the $)
+            amount = response[:-1]
+
+        else:
+            # set response to amount for now
+            profit_type = "unknown"
+            amount = response
+
+        try:
+            # check amount is a number more than zero
+            amount = float(amount)
+            if amount <= 0:
+                print(error)
+                continue
+
+        except ValueError:
+            print(error)
+
+        if profit_type == "unknown" and amount >= 100:
+            dollar_type = yes_no("Do you mean ${:.2f}. ie {:.2f} dollars? , y / n ".format(amount, amount))
+            print()
+
+            # set profit type based on user answer above
+            if dollar_type == "yes":
+                profit_type = "$"
+            else:
+                profit_type = "%"
+
+        elif profit_type == "unknown" and amount < 100:
+            percent_type = yes_no("Do you mean {}%? , y / n ".format(amount))
+            print()
+
+            if percent_type == "yes":
+                profit_type = "%"
+            else:
+                profit_type = "$"
+
+        # return profit goal to main routine
+        if profit_type == "$":
+            return amount
+        else:
+            goal = (amount / 100) * total_costs
+            return goal
+
+
 # *** Main routine ***
 
 # Get product name
@@ -151,15 +217,31 @@ if have_fixed == "yes":
 else:
     fixed_sub = 0
 
+# work out total costs and profit target
+all_costs = variable_sub + fixed_sub
+profit_target = profit_goal(all_costs)
+
+# Calculate recommended price
+selling_price = 0
+
 # *** Printing Area ***
 
 print("\n***** Fund Raising - {} *****".format(product_name))
 print()
 expense_print("Variable", variable_frame, variable_sub)
+print()
 
 if have_fixed == "yes":
     expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)
+    print()
 
-total_expenses = fixed_sub + variable_sub
+print("\n----- Total Costs: ${:.2f} -----".format(all_costs))
 print()
-print("Total Expenses: ${:.2f}".format(total_expenses))
+
+print("\n----- Profit & Sales Targets -----")
+print("Profit Target: ${:.2f}".format(profit_target))
+print("Total Sales: ${:.2f}".format(all_costs + profit_target))
+print()
+
+print("\n----- Recommended Selling Price: ${:.2f} -----".format(selling_price))
+print()
