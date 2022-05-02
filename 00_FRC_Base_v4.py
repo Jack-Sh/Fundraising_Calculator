@@ -205,6 +205,9 @@ def round_up(amount, var_round_to):
 # Get product name
 product_name = not_blank("Product name: ")
 
+how_many = num_check("How many items will you be producing? ",
+                     "The number of items must be a whole number more than zero", int)
+
 # get variable costs
 print("\nPlease enter your variable costs below...")
 
@@ -228,8 +231,19 @@ else:
 all_costs = variable_sub + fixed_sub
 profit_target = profit_goal(all_costs)
 
+# Calculate total sales needed to reach goal
+sales_needed = all_costs + profit_target
+
+# Ask user for rounding
+round_to = num_check("Round to nearest...? $", "Can't be 0", int)
+
 # Calculate recommended price
-selling_price = 0
+selling_price = sales_needed / how_many
+print("Selling Price (unrounded): ${:.2f}".format(selling_price))
+
+recommended_price = round_up(selling_price, round_to)
+
+# Write data to file
 
 # *** Printing Area ***
 
@@ -246,9 +260,12 @@ print("\n----- Total Costs: ${:.2f} -----".format(all_costs))
 print()
 
 print("\n----- Profit & Sales Targets -----")
+print()
 print("Profit Target: ${:.2f}".format(profit_target))
 print("Total Sales: ${:.2f}".format(all_costs + profit_target))
 print()
 
-print("\n----- Recommended Selling Price: ${:.2f} -----".format(selling_price))
+print("\n----- Pricing -----")
 print()
+print("Minimum Price: ${:.2f}".format(selling_price))
+print("Recommended Price: ${:.2f}".format(recommended_price))
