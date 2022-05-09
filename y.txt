@@ -1,8 +1,28 @@
 y
 
-      Price  Quantity   Cost
-Item                        
-2     $2.00         2  $4.00
+      Price  Quantity     Cost
+Item                          
+y     $2.00       100  $200.00
 
-0.6
+Variable Costs: $200.00
+
+       Price  Quantity    Cost
+Item                          
+y     $50.00         1  $50.00
+
+Fixed Costs: $50.00
+
+--- Total Costs: $250.00 ---
+
+--- Profit & Sales Targets ---
+
+Profit Target: $125.00
+
+Total Sales: $375.00
+
+--- Pricing ---
+
+Minimum Price: $3.75
+
+Recommended Price: $4.00
 
