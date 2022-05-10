@@ -200,7 +200,24 @@ def round_up(amount, var_round_to):
     return int(math.ceil(amount / var_round_to)) * var_round_to
 
 
+# instructions function
+def instructions():
+    show_help = False
+    while show_help == False:
+        show_help = yes_no("Would you like to see the instructions? ").lower()
+
+    if show_help == "yes":
+        print()
+        print("**** FRC Instructions ****")
+
+    return ""
+
+
 # *** Main routine ***
+
+# Ask user if they want to see instructions
+instructions()
+print()
 
 # Get product name
 product_name = not_blank("Product name: ")
