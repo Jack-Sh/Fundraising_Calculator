@@ -254,7 +254,7 @@ if have_fixed == "yes":
 # convert numbers to strings for text file
 variable_sub_str = ("Variable Costs: ${:.2f}".format(variable_sub))
 fixed_sub_str = ("Fixed Costs: ${:.2f}".format(fixed_sub))
-all_costs_str = ("--- Total Costs: ${:.2f} ---".format(all_costs))
+all_costs_str = ("\n--- Total Costs: ${:.2f} ---".format(all_costs))
 profit_target_str = ("Profit Target: ${:.2f}".format(profit_target))
 total_sales_str = ("Total Sales: ${:.2f}".format(sales_needed))
 selling_price_str = ("Minimum Price: ${:.2f}".format(selling_price))
@@ -263,11 +263,11 @@ recommended_price_str = ("Recommended Price: ${:.2f}".format(recommended_price))
 # set up list of items that need to be written to the txt file
 if have_fixed == "yes":
     to_write = [product_name, variable_txt, variable_sub_str, fixed_txt, fixed_sub_str, all_costs_str,
-                "--- Profit & Sales Targets ---", profit_target_str, total_sales_str,
-                "--- Pricing ---", selling_price_str, recommended_price_str]
+                "\n--- Profit & Sales Targets ---", profit_target_str, total_sales_str,
+                "\n--- Pricing ---", selling_price_str, recommended_price_str]
 else:
-    to_write = [product_name, variable_txt, variable_sub_str, all_costs_str, "--- Profit & Sales Targets ---", profit_target_str,
-                total_sales_str, "--- Pricing ---", selling_price_str, recommended_price_str]
+    to_write = [product_name, variable_txt, variable_sub_str, all_costs_str, "\n--- Profit & Sales Targets ---", profit_target_str,
+                total_sales_str, "\n--- Pricing ---", selling_price_str, recommended_price_str]
 
 # Write to file...
 # create file to hold data (add .txt extension)
