@@ -2,33 +2,33 @@ Custom Mugs
 
            Price  Quantity     Cost
 Item                               
-Mugs       $4.00       200  $800.00
-Printing   $2.00       200  $400.00
-Packaging  $0.50       100   $50.00
+Mugs       $2.00       200  $400.00
+Printing   $1.00       200  $200.00
+Packaging  $2.00       100  $200.00
 
-Variable Costs: $1250.00
+Variable Costs: $800.00
 
-        Price  Quantity     Cost
-Item                            
-Rent   $75.00         1   $75.00
-Ads   $150.00         1  $150.00
+       Price  Quantity    Cost
+Item                          
+Rent  $50.00         1  $50.00
+Ads   $75.00         1  $75.00
 
-Fixed Costs: $225.00
+Fixed Costs: $125.00
 
 
---- Total Costs: $1475.00 ---
+--- Total Costs: $925.00 ---
 
 
 --- Profit & Sales Targets ---
 
-Profit Target: $737.50
+Profit Target: $555.00
 
-Total Sales: $2212.50
+Total Sales: $1480.00
 
 
 --- Pricing ---
 
-Minimum Price: $11.06
+Minimum Price: $7.40
 
-Recommended Price: $12.00
+Recommended Price: $8.00
 

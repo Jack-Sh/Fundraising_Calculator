@@ -208,7 +208,17 @@ def instructions():
 
     if show_help == "yes":
         print()
-        print("**** FRC Instructions ****")
+        print("**** FRC Instructions ****\n\n"
+              "This program will ask you for the following:\n"
+              "- The name of your product\n"
+              "- How many units you intend to be producing\n"
+              "- Each components name, quantity and cost (type xxx into item name to break the loop)\n"
+              "- You will be asked if you have fixed costs. If yes enter the name and cost (use xxx again once you are done)\n"
+              "- Profit goal (percent or dollar amount)\n"
+              "- And what you want your selling price to be rounded to\n\n"
+              "The program will then print out dataframes with your variable and fixed costs (if applicable)\n"
+              "It will also output the total costs, profit targets, total sales required and a recommended sales price\n\n"
+              "The data will also be written to a text file (it will have the same name as your product)")
 
     return ""
 
@@ -217,7 +227,7 @@ def instructions():
 
 # Ask user if they want to see instructions
 instructions()
-print()
+print("\n----- Program Launched! -----\n")
 
 # Get product name
 product_name = not_blank("Product name: ")
